@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="home">
 <head>
 	<title>Dashboard - StarLink</title>
 
@@ -19,6 +19,8 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
+	<!---        AngularJS      -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="styles/style.css">
@@ -28,27 +30,73 @@
 
 
 </head>
-<body ng-app="home" ng-controller="">
+<body ng-controller="dashCtrl">
 
-<nav class="header navbar navbar-fixed-top">
-	<!--<div class="container">-->
-	<div class="navbar-brand">Logo</div>
-	<div class="navContainer container-fluid">
-		<ul class="nav navbar-nav">
-			<li class="active"><a href="#">Home</a></li>
-			<li><a href="#">About</a></li>
-			<li><a href="#">Contact Us</a></li>
-		</ul>
-	</div>	
-	<!--</div>-->
-	<div id="loginContainer"><span class="glyphicon glyphicon-user">Logout</span></div>
-</nav>
+<menu-bar>
+	<div>User Image</div>
+</menu-bar>
+
+<div class="container-fluid">
+	
+	<div class="row">
+		<div class="col-sm-3 col-md-2 sidebar">
+			<div class="userImg">Coach/Student</div>
+			<ul class="nav nav-sidebar">
+				<li class="active">Dashboard</li>
+				<li>Profile</li>
+				<li>Uploads</li>
+				<li>Scholarships</li>
+			</ul>
+
+			<ul class="nav nav-sidebar bottom-ul">
+				<li>Change Password</li>
+				<li>Logout</li>
+			</ul>
+
+			<p class="footer">&copy; Crystal R. Williams</p>
+		</div>
+
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<div class="row">
+					<div class="dash-boxes col-md-3 col-md-offset-2" id="todo">
+						<div class="boxTitle">To-Do List</div>
+						<div class="boxContent">Placeholder</div>	
+					</div>		
+
+					<div class="dash-boxes col-md-3 col-md-offset-1" id="calendar">
+						<div class="boxTitle">Calendar</div>
+						<div class="boxContent">Placeholder</div>	
+					</div>					
+			</div>
+
+			<div class="row">
+				<div class="dash-boxes col-md-3 col-md-offset-2" id="scholarships">
+					<div class="boxTitle">Scholarships</div>
+					<div class="boxContent">Placeholder</div>	
+				</div>
+
+				<div class="dash-boxes col-md-3 col-md-offset-1" id="messages">
+					<div class="boxTitle">Messages</div>
+					<div class="boxContent">Placeholder</div>	
+				</div>					
+			</div>
+	
+		</div>	
+	</div>
+
+</div>
 		
 
-<div class="footer"></div>
 
-<!---        AngularJS      -->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>-->
+
+<!-- modules -->
+<script type="text/javascript" src="js/app.js"></script>
+
+<!-- directives -->
+<script type="text/javascript" src="js/directives/menuBar.js"></script>
+
+<!-- controllers -->
+<script type="text/javascript" src="js/controllers/dashboardController.js"></script>
 
 </body>
 </html>

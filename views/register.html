@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="home">
 <head>
 	<title>Account Registration - StarLink</title>
 
@@ -18,7 +18,8 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-
+	<!---        AngularJS      -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="styles/style.css">
@@ -27,7 +28,9 @@
 	<script type="text/javascript" src="js/events.js"></script>
 
 </head>
-<body>
+<body ng-controller="registerCtrl">
+
+<menu-bar></menu-bar>
 
 <div class="container-fluid">
 	<form>
@@ -47,9 +50,20 @@
 			<option value="coach">Coach</option>
 		</select></p>
 
-		<p><button>Register</button></p>   
+		<p><button ng-click="registerMe()">Register</button></p>   
 	</form>
 </div>
+
+<div class="footer container-fluid">&copy; Crystal R. Williams</div>
+
+<!-- modules -->
+<script type="text/javascript" src="js/app.js"></script>
+
+<!-- directives -->
+<script type="text/javascript" src="js/directives/menuBar.js"></script>
+
+<!-- controllers -->
+<script type="text/javascript" src="js/controllers/registerController.js"></script>
 
 </body>
 </html>

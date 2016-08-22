@@ -1,5 +1,5 @@
 .header {
-	border: 1px solid #000;
+	/*border: 1px solid #000;*/
 }
 
 .glyphicon {
@@ -24,7 +24,7 @@ nav {
 }
 
 #loginBox {
-	border: 1px solid #000;
+	/*border: 1px solid #000;*/
 	width: 15%;
 	/*height: 100px;*/
 	display: none;
@@ -74,13 +74,14 @@ ul.nav {
 	display: inline-block;
 	height: 100%;
 	/*padding: 5px 20px;*/
+	color: #FFF;
 	line-height: unset;
 	padding-left: 50px;
 	padding-right: 50px;
 }
 
 .navContainer {
-	border: 1px solid #000;
+	/*border: 1px solid #000;*/
 	overflow: hidden;
 	display: inline-block;
 	/*float: left;*/
@@ -91,6 +92,60 @@ ul.nav {
 .nav {
 	width: 100%;
 }
+
+menu-bar {
+	display: block;
+	margin-bottom: 57px;
+}
+
+.sidebar {
+	padding-top: 50px;
+	background-color: #AE0202;
+	border-right: 1px solid #000;
+}
+
+.bottom-ul {
+	border-top: 2px solid #FFF;
+}
+
+.dash-boxes {
+	border: 1px solid #F5F6F7;
+/*	width: 20%;*/
+	height: 15%;
+	margin-top: 20px;
+	padding-left: unset;
+	padding-right: unset;
+}
+
+.boxTitle {
+	background-color: #002E55;
+	color: #FFF;
+	font-size: 14pt;
+	font-weight: bold;
+	text-align: center;
+}
+
+.boxContent {
+	background-color: #FFF;
+	padding: 5px;
+}
+
+
+/* bootstrap overriding */
+.glyphicon-user {
+	color: #FFF;
+}
+
+.glyphicon-user:before {
+	padding-right: 3px;
+}
+
+.main {
+	background-color: #FCFCFD;
+	padding: unset;
+}
+
+
 
 /* media queries    */
 
