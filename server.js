@@ -13,6 +13,16 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 
 app.use(express.static(process.cwd() + '/public'));
 
+// make connection to mongodb
+var uri = 'mongodb://localhost/StarLink';
+mongoose.connect(uri);
+
+var db = mongoose.connection;
+db.on('err', console.error.bind(console, 'connection err:'));
+db.once('open', function(){
+	console.log('Connected.');
+});
+
 
 // expressjs routes
 
@@ -22,6 +32,14 @@ app.use(express.static(process.cwd() + '/public'));
 
 	app.get('/register', function(req, res){
 		res.sendFile(__dirname + '/views/register.html');
+	});
+
+	app.post('/register', function(req, res){
+		console.log("name is ", req.body.name);
+		console.log("username ", req.body.user);
+
+		console.log("name2 is ", req.body.name);
+		console.log("username2 ", req.body.user);
 	});
 
 	app.get('/dash', function(req, res){
@@ -35,7 +53,7 @@ app.use(express.static(process.cwd() + '/public'));
 
 	// route for profile
 	app.get('/profile/:id', function(req, res){
-		res.sendFile(__dirname + '/views/profile');
+		res.sendFile(__dirname + '/views/profile.html');
 	});
 
 	// route for viewing studdents
