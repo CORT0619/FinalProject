@@ -1,5 +1,4 @@
-//var app = angular.module('home', []);
+app.controller('indexCtrl', ['$scope','$http', function($scope, $http){
 
-app.controller('indexCtrl', ['$scope', function($scope){
 
 }]);

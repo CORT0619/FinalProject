@@ -1,6 +1,13 @@
-app.controller('registerCtrl', ['$scope', '$http', function($scope, $http){
+app.controller('registerCtrl', ['$scope', '$http', '$window', function($scope, $http, $window){
+
+	$scope.showModal = false;
+	// $scope.toggleModal = function(){
+	// 	$scope.showModal = true;
+	// }
 
 	$scope.registerMe = function() {
+
+		console.log($scope.username);
 
 		var data = $.param({
 			name: $scope.firstName + ' ' + $scope.lastName,
@@ -16,9 +23,15 @@ app.controller('registerCtrl', ['$scope', '$http', function($scope, $http){
 			url: '/register',
 			data: data,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
 		}).then(function(results){
 
 			console.log("results ", results);
+
+			if(results)
+				$scope.showModal = true;
+			//$window.location.href = '/';
+
 		})
 
 	}

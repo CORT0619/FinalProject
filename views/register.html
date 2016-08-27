@@ -28,30 +28,62 @@
 	<script type="text/javascript" src="js/events.js"></script>
 
 </head>
-<body ng-controller="registerCtrl">
+<body ng-controller="registerCtrl" class=" pagesBgColor">
 
 <menu-bar></menu-bar>
 
-<div class="container-fluid">
-	<form>
-		<div class="formTitle">User Registration</div>
-		<p>First Name: <input type="text" name="firstName" id="firstName" ng-model="firstName">
-		   Last Name: <input type="text" name="lastName" id="lastName" ng-model="lastName"></p>
+<div class="container" >
 
-		<p>Username: <input type="text" name="username" id="username" ng-model="username"></p>
-		<p>Password: <input type="password" name="pass" id="pass" ng-model="pass"></p>
-		<p>Confirm Password: <input type="password" name="confPass" id="confPass"></p>
-		<p>Email: <input type="text" name="email" id="email" ng-model="email"></p>
-		<p>School: <input type="text" name="school" id="school" ng-model="school"></p>
-		<p>Account Type: 
-		<select ng-model="accType" required>
-			<option value=""></option>
-			<option value="stud">Student</option>
-			<option value="coach">Coach</option>
-		</select></p>
+	<modal visible="showModal"></modal>
 
-		<p><button ng-click="registerMe()">Register</button></p>   
-	</form>
+	<div id="registerForm">
+		<h2 class="text-center">User Registration</h2>
+		<form>
+			<div class="form-group floatLeft">
+				<label for="firstName">First Name </label>
+				<input type="text" class="form-control" name="firstName" id="firstName" ng-model="firstName" required>
+			</div>
+
+			<div class="form-group floatLeft">
+			  <label for="lastName"> Last Name </label>
+			  <input type="text" class="form-control" name="lastName" id="lastName" ng-model="lastName" required>
+			 </div>
+
+			<div class="form-group clear">
+				<label for="username">Username </label>
+				<input type="text" class="form-control" name="username" id="username" ng-model="username" required>
+			</div>
+
+			<div class="form-group floatLeft">
+				<label for="pass">Password </label>
+				<input type="password" class="form-control" name="pass" id="pass" ng-model="pass" required>
+			</div>
+
+			<div class="form-group floatLeft">
+				<label for="confPass">Confirm Password </label>
+				<input type="password" class="form-control" name="confPass" id="confPass" required>
+			</div>
+
+			<div class="form-group clear">
+				<label for="email">Email </label>
+				<input type="text" class="form-control" name="email" id="email" ng-model="email" required>
+			</div>
+				
+			<div class="form-group">
+				<label for="school">School </label>
+				<input type="text" class="form-control" name="school" id="school" ng-model="school" required>
+			</div>
+
+			<p><label for="accType">Account Type </label>
+			<select ng-model="accType" class="form-control" required>
+				<option value=""></option>
+				<option value="stud">Student</option>
+				<option value="coach">Coach</option>
+			</select></p>
+
+			<p class="text-center"><button class="btn btn-default btn-danger" ng-click="registerMe()">Register</button></p>   
+		</form>
+	</div>
 </div>
 
 <div class="footer container-fluid">&copy; Crystal R. Williams</div>
@@ -61,6 +93,7 @@
 
 <!-- directives -->
 <script type="text/javascript" src="js/directives/menuBar.js"></script>
+<script type="text/javascript" src="js/directives/modal.js"></script>
 
 <!-- controllers -->
 <script type="text/javascript" src="js/controllers/registerController.js"></script>

@@ -1,8 +1,12 @@
+/* General css  */
+.pagesBgColor {
+	background-color: #FCFCFD;
+}
+
+label {margin-right: 1.5%}
+
 a {
 	color: #FFF;
-}
-.header {
-	/*border: 1px solid #000;*/
 }
 
 .glyphicon {
@@ -26,18 +30,19 @@ nav {
 	background-color: #000080;
 }
 
-#loginBox {
-	/*border: 1px solid #000;*/
-	width: 15%;
-	/*height: 100px;*/
-	display: none;
-	z-index: -1000;
-	margin-top: 50px;
-	float: right;
-	border-top: none;
-	padding: 20px 0px 5px 5px;
-	min-width: 300px;
-	margin-right: 50px;
+.pointer {
+	cursor: pointer;
+}
+
+input[type=text], input[type=password] {
+	border-radius: 3px;
+	border: 1px solid #e6e6e6;
+	padding: 5px 8px;
+	font-size: 16px;
+}
+
+ng-include, div[ng-controller=menubarCtrl] {
+	display: block;
 }
 
 div.glyphicon {
@@ -152,6 +157,54 @@ menu-bar {
 	border-bottom-right-radius: 2px;
 }
 
+/* Login div */
+#loginBox {
+	border: 1px solid #E6E6E6;
+	width: 15%;
+	/*height: 100px;*/
+	/*display: none;*/
+	z-index: -1000;
+	margin-top: 50px;
+	float: right;
+	border-top: none;
+	padding: 0px 10px 5px 10px;
+	min-width: 300px;
+	margin-right: 50px;
+	border-radius: 3px;
+}
+
+#loginBox h3 {
+	text-align: center;
+	background-color: #C4332F;
+	color: #FFF;
+	margin-top: 8px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#loginRegisterLink {
+	float: right;
+	padding: 5px;
+	color: #AE0202;
+}
+
+#loginRegisterLink a:link {
+	color: #AE0202;
+}
+
+#loginRegisterLink a:visited {
+	color: #AE0202;
+}
+
+#loginRegisterLink a:hover {
+
+}
+
+#loginRegisterLink a:active {
+	color: #AE0202;
+}
+
+
 /* sidebar */
 .glyphicon-home:before {
 	padding-right: 5px;
@@ -164,6 +217,40 @@ span[class^="glyphicon-"] {
 div.col-md-2, div.col-sm-3 {
 	padding-left: unset;
 	padding-right: unset;
+}
+
+/* Register.html */
+h2 {
+	margin-bottom: 20px;
+	color: #AE0202;
+}
+
+#registerForm {
+	border: 1px solid #F1F2F4;
+	padding: 0px 30px 10px 30px; 
+	border-radius: 3px;
+	margin-top: 30px;
+	background-color: #FFF;
+}
+
+#registerForm input[type=text], #registerForm input[type=password] {
+	border-radius: 3px;
+	border: 1px solid #e6e6e6;
+	padding: 5px 8px;
+	font-size: 16px;
+}
+
+/*#registerForm input[type=password] {
+	width: 200px;
+}*/
+
+.floatLeft {
+	float: left;
+	margin-right: 55px;
+}
+
+.clear {
+	clear: both;
 }
 
 /* bootstrap overriding */
