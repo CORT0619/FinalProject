@@ -6,6 +6,7 @@ var passport = require('passport'), LocalStrategy = require('passport-local').St
 var flash = require('connect-flash');
 var crypto = require('crypto');
 var session = require('express-session');
+var cookieParser = require('cookie-parser');
 
 
 // make connection to mongodb
@@ -35,25 +36,37 @@ var userSchema = new Schema({
 var User = mongoose.model
 ('User', userSchema);
 
+//crypto
+const hash = "Hash that password683";
+
 // set passport local strategy
 passport.use(new LocalStrategy({
 	usernameField: 'user',
-	passwordField: 'pass'
+	passwordField: 'pass',
+	passReqToCallback: true
 },
-	function(username, password, done){
-		console.log("here");
+	function(req, username, password, done){
 		User.findOne({username: username}, function(err, user){
-			console.log(username);
-			console.log("here2");
 			if(err) return done(err);
 
-			if(!user) return done(null, false, {message: 'Incorrect login name or password'});
+			if(!user) return done(null, false, /*{message: 'Incorrect login name or password'}*/req.flash('message', 'Incorrect login name or password'));
 
-			// if(user.password != password){
-			// 	return done(null, false, {message: 'Incorrect login name or password.'});
-			// }
+			var encryptIt = crypto.createHmac('sha512', password).update(hash).digest('hex');
+
+			if(user.pass != encryptIt){
+
+			 	return done(null, false, req.flash('message', 'Incorrect login name or password')/*{message: 'Incorrect login name or password.'}*/);
+			}
 
 			console.log("user ", user);
+
+			req.session.user = user.username;
+			req.session.id = user._id.toString();
+
+			console.log("id ", req.session.id);
+
+
+
 
 			return done(null, user);
 		});
@@ -68,12 +81,13 @@ passport.serializeUser(function(user, done){
 });
 
 passport.deserializeUser(function(username, done){
-	User.findOne({username: user}, function(err, user){
+
+	User.findOne({username: username}, function(err, user){
 		if(err) return done(err);
 
 		done(null, user);
-	})
-})
+	});
+});
 
 
 var app = express();
@@ -83,12 +97,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
+app.use(cookieParser());
 
 app.use(express.static(process.cwd() + '/public'));
 app.use(session({secret: 'cookies pretty',
-				 resave: false,
 				 saveUninitialized: false,
-				 cookie: {secure: true, maxAge: 55000}}))
+				 resave: false,
+				 cookie: {maxAge: 180000}}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -96,14 +111,23 @@ app.use(flash());
 
 
 
-//crypto
-const hash = "Hash that password683";
+
+
+
+
+
 
 
 // expressjs routes
 
 	app.get('/', function(req, res){
+
+		if(req.isAuthenticated()){
+
+			console.log("authenticated");
+		}
 		res.sendFile(__dirname + '/views/index.html');
+
 	});
 
 	app.get('/register', function(req, res){
@@ -125,33 +149,90 @@ const hash = "Hash that password683";
 		res.send({});
 	});
 
-	app.post('/login', passport.authenticate('local', { /*successRedirect: '/dash', failureRedirect: '/login', */failureFlash: true}), function(req, res){
-		res.redirect('/dash');
+	app.post('/login', passport.authenticate('local', { /*successRedirect: '/dash', failureRedirect: '/login',*/ failureFlash: true}), function(req, res){
+
+		/*console.log("req.session ", req.session);
+		console.log("req.session.user ", req.session.user);*/
+
+		if(req.isAuthenticated()){
+
+			//res.redirect('/dash');
+			res.json({url: '/dash'});
+		} 
+
 	});
 
 	app.get('/dash', function(req, res){
-		res.sendFile(__dirname + '/views/dashboard.html');
-	})
+
+
+		console.log("req.session ", req.session);
+
+		console.log("res.isAuthenticated() ", req.isAuthenticated());
+
+		if(req.isAuthenticated()){
+
+		//	console.log(req.session);
+			//res.redirect('/dash');
+			res.sendFile(__dirname + '/views/dashboard.html');
+			//res.json({url: '/dash'});
+
+		} else {
+			//res.redirect ('/');
+			res.sendFile(__dirname + '/views/index.html');
+		}
+
+
+	});
 
 	// route for uploads
 	app.get('/uploads', function(req, res){
-		res.sendFile(__dirname + '/views/uploads.html');
+
+		if(req.isAuthenticated()){
+			console.log(req.session);
+			res.sendFile(__dirname + '/views/uploads.html');
+
+		} else {
+			res.sendFile(__dirname + '/views/index.html');
+		}
+
 	})
 
 	// route for profile
 	app.get('/profile/:user', function(req, res){
-		res.sendFile(__dirname + '/views/profile.html');
+
+		if(req.isAuthenticated()){
+			console.log(req.session);
+			res.sendFile(__dirname + '/views/profile.html');
+
+		} else {
+			res.sendFile(__dirname + '/views/index.html');
+		}
 	});
 
 	// route for viewing studdents
 	app.get('/students', function(req, res){
-		res.sendFile(__dirname + '/views/students.html');
+		if(res.isAuthenticated()){
+			res.sendFile(__dirname + '/views/students.html');
+		} else {
+			res.sendFile(__dirname + '/views/index.html');
+		}
+		
+	});
+
+	app.get('/logout', function(req, res){
+		req.logout();
+		req.session.destroy(function(err){
+			if(err) return err;
+		})
+		res.redirect('/');
+
+		console.log("am i authenticated ", req.isAuthenticated());
 	});
 
 	// default route
 	app.use('/', function(req, res){
 		res.sendFile(__dirname + '/views/index.html');
-	})
+	});
 
 
 // app listener

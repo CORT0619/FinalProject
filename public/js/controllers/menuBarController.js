@@ -1,4 +1,4 @@
-app.controller('menubarCtrl', ['$scope', '$http', function($scope, $http){
+app.controller('menubarCtrl', ['$scope', '$http', '$window', function($scope, $http, $window){
 
 	$scope.showLogin = false;
 
@@ -20,7 +20,13 @@ app.controller('menubarCtrl', ['$scope', '$http', function($scope, $http){
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 		}).then(function(results){
-			console.log("results ", results);
+
+			console.log("results.url ", results.data.url);
+
+			// $location.path(results.data.url);
+			// $scope.$apply();
+
+			$window.location.href= results.data.url;
 		})
 	}
 
