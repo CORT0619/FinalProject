@@ -9,17 +9,31 @@
 			</button>
 			<div class="navbar-brand"><a href="/">Logo</a></div>
 		</div>
-		<div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav navbar-nav navbar-left" style="margin-left: 10.5%">
+		<div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
+			<ul class="nav navbar-nav navbar-left" id="menubar-ul">
 				<li class="active"><a href="/">Home</a></li>
 				<li><a href="#">About</a></li>
 				<li><a href="#">Contact Us</a></li>
 			</ul>
-			<div id="loginContainer" class="nav navbar-right">
+
+			<ul class="nav nav-sidebar" id="embedded-sidebar">
+				<li><a href="/dash"><span class="glyphicon glyphicon-home"> Dashboard</span></a></li>
+				<li><a href="/profile"><span class="glyphicon glyphicon-pencil"> Profile</span></a>
+					<ul>
+						<li><span class="glyphicon glyphicon-cog"> Change Password</span></li>
+					</ul></li>
+				<li><a href="/uploads"><span class="glyphicon glyphicon-open"> Uploads</span></a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-education"> Scholarships</span></a></li>
+			</ul>
+
+			<div id="loginContainer" class="nav navbar-right" ng-show="!isLoggedIn">
 				<div ng-click="toggle()" class="pointer glyphicon glyphicon-user" style="color: #FFF">Login</div>
-			</div>	
-		</div>
-		
+			</div>
+
+			<div id="logoutContainer" class="nav navbar-right" ng-show="isLoggedIn">
+				<a href="/logout"><div class="pointer glyphicon glyphicon-user" style="color: #FFF">Logout</div></a>
+			</div>		
+		</div>		
 	</div>
 </nav>
 		

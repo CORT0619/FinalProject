@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="home" ng-cloak>
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> - StarLink</title>
+
+	<!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+
+	<!-- BootStrap       -->
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+	<!---        AngularJS      -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+	<!---		 CSS 		-->
+	<link rel="stylesheet" type="text/css" href="styles/style.css">
+
+	<!--- 		JQuery/JavaScript -->
+	<script type="text/javascript" src="js/events.js"></script>
+
+	<!---		UI-Router		-->
+	<script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+
+
+</head>
+<body ng-controller="">
+
+<div class="menuHolder" ng-controller="menubarCtrl" ng-include="'includes/menuBar.html'">
+	<ng-include></ng-include>
+</div>
+
+<div class="container-fluid">
+	
+	<div class="row">
+		<div class="col-sm-3 col-md-2 sidebar" ng-include="'includes/sidebar.html'">
+			<ng-include></ng-include>
+		</div>
+
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+	
+		</div>	
+	</div>
+
+</div>
+		
+
+
+
+<!-- modules -->
+<script type="text/javascript" src="js/app.js"></script>
+
+<!-- directives -->
+<!-- <script type="text/javascript" src="js/directives/menuBar.js"></script> -->
+
+<!-- controllers -->
+<script type="text/javascript" src="js/controllers/dashboardController.js"></script>
+<script type="text/javascript" src="js/controllers/menuBarController.js"></script>
+
+</body>
+</html>

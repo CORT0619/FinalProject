@@ -106,32 +106,22 @@ app.use(passport.session());
 app.use(flash());
 
 
-// protect secure pages
-var auth = function(req, res, next){
-	if(!req.isAuthenticated()){
-		res.send(401);
-	} else {
-		next();
-	}
-}
+
 
 
 
 
 // expressjs routes
 
-	app.get('/loggedin', function(req, res){
-		res.send(req.isAuthenticated() ? req.user : '0');
+	app.get('/', function(req, res){
+
+		if(req.isAuthenticated()){
+
+			console.log("authenticated");
+		}
+		res.sendFile(__dirname + '/views/index.html');
+
 	});
-
-	app.get('/dash', auth);/*, function(req, res){*/
-
-		// if(!req.isAuthenticated()){
-
-		// 	res.json({url: '/'});
-		// } 
-
-	//});
 
 	app.get('/register', function(req, res){
 		res.sendFile(__dirname + '/views/register.html');
@@ -172,10 +162,31 @@ var auth = function(req, res, next){
 
 	});
 
+	app.get('/dash', function(req, res){
+
+
+		console.log("req.session ", req.session);
+
+		console.log("res.isAuthenticated() ", req.isAuthenticated());
+
+		if(req.isAuthenticated()){
+
+		//	console.log(req.session);
+			//res.redirect('/dash');
+			res.sendFile(__dirname + '/views/dashboard.html');
+			//res.json({url: '/dash'});
+
+		} else {
+			//res.redirect ('/');
+			res.sendFile(__dirname + '/views/index.html');
+		}
+
+
+	});
 
 	// route for uploads
-	//app.get('/uploads', function(req, res){
-/*
+	app.get('/uploads', function(req, res){
+
 		if(req.isAuthenticated()){
 			console.log(req.session);
 			res.sendFile(__dirname + '/views/uploads.html');
@@ -183,29 +194,29 @@ var auth = function(req, res, next){
 		} else {
 			res.sendFile(__dirname + '/views/index.html');
 		}
-*/
-	//});
+
+	})
 
 	// route for profile
 	app.get('/profile/:user', function(req, res){
-/*
+
 		if(req.isAuthenticated()){
 			console.log(req.session);
 			res.sendFile(__dirname + '/views/profile.html');
 
 		} else {
 			res.sendFile(__dirname + '/views/index.html');
-		}*/
+		}
 	});
 
 	// route for viewing studdents
 	app.get('/students', function(req, res){
-/*		if(res.isAuthenticated()){
+		if(res.isAuthenticated()){
 			res.sendFile(__dirname + '/views/students.html');
 		} else {
 			res.sendFile(__dirname + '/views/index.html');
 		}
-		*/
+		
 	});
 
 	app.get('/logout', function(req, res){
@@ -216,6 +227,11 @@ var auth = function(req, res, next){
 		res.redirect('/');
 
 		console.log("am i authenticated ", req.isAuthenticated());
+	});
+
+	// default route
+	app.use('/', function(req, res){
+		res.sendFile(__dirname + '/views/index.html');
 	});
 
 

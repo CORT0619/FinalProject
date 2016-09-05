@@ -1,4 +1,3 @@
-app.controller('indexCtrl', ['$scope','$http', function($scope, $http){
-
+app.controller('homeCtrl', ['$scope','$http', function($scope, $http){
 
 }]);
