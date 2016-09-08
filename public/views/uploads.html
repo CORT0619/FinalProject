@@ -3,50 +3,16 @@
 <h2>File Uploads</h2>
 	<!-- <button class="btn btn-default"><span class="glyphicon glyphicon-paperclip"> Upload</span></button> -->
 
-	<form id="dropzone" action="/uploadIt" method="post" class="dropzone" enctype="multipart/form-data">
+	<form id="dropzone" action="/uploads" method="post" class="dropzone" enctype="multipart/form-data">
+		<input type="file" name="uploaded">
 		<div class="dz-default dz-message">
-			<span class="glyphicon glyphicon-paperclip"> Drop files here to upload</span>
+			<span class="glyphicon glyphicon-paperclip"> Drop files here to upload and click "Upload"</span>
 		</div>
 	</form>
-	<input type="file" name="file" class="dz-hidden-input" multiple="multiple">
-
-<!-- 	<div class="dz-preview dz-file-preview">
-		<div class="dz-details">
-			<div class="dz-filename"><span data-dz-name></span></div>
-			<div class="dz-size" data-dz-size></div>
-			<img data-dz-thumbnail>
-		</div>
-		<div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-		<div class="dz-success-mark"><span>✔</span></div>
-		<div class="dz-error-mark"><span>✘</span></div>
-		<div class="dz-error-message"><span data-dz-errormessage></span></div> -->
-
-<!-- 		<div class="dz-image">
-			<img data-dz-thumbnail>
-		</div>
-		<div class="dz-details">
-			<div class="dz-size">
-				<span data-dz-size></span>
-			</div>
-			<div class="dz-filename">
-				<span data-dz-name></span>
-			</div>
-		</div>
-		<div class="dz-progress">
-			<span class="dz-upload" data-dz-uploadprogress></span>
-		</div>
-		<div class="dz-error-message">
-			<span data-dz-errormessage></span>
-		</div>
-		<div class="dz-success-mark">
-			<svg>REMOVED FOR BREVITY</svg>
-		</div>
-		<div class="dz-error-mark">
-			<svg>REMOVED FOR BREVITY</svg>
-		</div> -->
-	<!-- </div> -->
 
 	<button class="btn btn-default btn-primary" ng-click="uploadFile()"><span class="glyphicon glyphicon-paperclip"> Upload</span></button>
-	<button class="btn btn-danger" ng-click="reset()"><span class="glyphicon glyphicon-remove"> Reset</span></button>
+	<button id="reset" class="btn btn-danger" ng-click="reset()"><span class="glyphicon glyphicon-remove"> Reset</span></button>
 </div>	
+	
+
 	

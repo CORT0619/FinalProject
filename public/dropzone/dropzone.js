@@ -117,8 +117,8 @@
       url: null,
       method: "post",
       withCredentials: false,
-      parallelUploads: 2,
-      uploadMultiple: true,
+      parallelUploads: 1,
+      uploadMultiple: false,
       maxFilesize: 256,
       paramName: "file",
       createImageThumbnails: true,
@@ -134,7 +134,7 @@
       acceptedMimeTypes: null,
       autoProcessQueue: true,
       autoQueue: true,
-      addRemoveLinks: false,
+      addRemoveLinks: true,
       previewsContainer: null,
       hiddenInputContainer: "body",
       capture: null,
@@ -604,6 +604,7 @@
       this.on("complete", (function(_this) {
         return function(file) {
           if (_this.getAddedFiles().length === 0 && _this.getUploadingFiles().length === 0 && _this.getQueuedFiles().length === 0) {
+              this.removeAllFiles(true); //I added this
             return setTimeout((function() {
               return _this.emit("queuecomplete");
             }), 0);
@@ -691,6 +692,18 @@
         this.hiddenFileInput = null;
       }
       delete this.element.dropzone;
+      return Dropzone.instances.splice(Dropzone.instances.indexOf(this), 1);
+    };
+
+    Dropzone.prototype.emptyfiles = function() {
+      var _ref;
+      //this.disable();
+      this.removeAllFiles(true);
+      if ((_ref = this.hiddenFileInput) != null ? _ref.parentNode : void 0) {
+        this.hiddenFileInput.parentNode.removeChild(this.hiddenFileInput);
+        //this.hiddenFileInput = null;
+      }
+      //delete this.element.dropzone;
       return Dropzone.instances.splice(Dropzone.instances.indexOf(this), 1);
     };
 
@@ -1016,6 +1029,8 @@
         if (this.options.autoProcessQueue) {
           return setTimeout(((function(_this) {
             return function() {
+              // delete element goes here?
+
               return _this.processQueue();
             };
           })(this)), 0);

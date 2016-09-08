@@ -3,9 +3,9 @@ Dropzone.options.uploadIt = {
   maxFilesize: 2, // MB
   maxFiles: 1,
   dictDefaultMessage: 'Drag an image here to upload, or click to select one',
-  /*headers: {
+  headers: {
     'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value,
-  },*/
+  },
   acceptedFiles: 'image/*',
   init: function() {
     this.on('success', function( file, resp ){

@@ -275,7 +275,8 @@ div.col-md-2, div.col-sm-3 {
 }
 
 #top-ul li a {
-	padding-left: 75px;
+	/*padding-left: 75px;*/
+	padding-left: 25%;
 }
 
 #bottom-section {
@@ -366,12 +367,19 @@ h2 {
 	padding: 20px;
 }
 
+/*  Profile.html  */
+
 
 #bigUserImg {
-	width: 10%;
-	height: 50px;
+	width: 11%;
+	/*height: 50px;*/
 	border: 1px solid #000;
-	padding: 5px;
+	padding: 3px;
+	overflow: hidden;
+}
+
+#editProfile {
+	margin-top: 25px;
 }
 
 p.footer {

@@ -1,5 +1,5 @@
 var app = angular.module('app', [
-		'ui.router'
+		'ui.router', 'ngStorage'
 	])
 	.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider){
 		$urlRouterProvider.otherwise('/');
@@ -12,14 +12,20 @@ var app = angular.module('app', [
 			.state('dash', {
 				url: '/dash',
 				templateUrl: 'views/dashboard.html',
-				controller: 'dashCtrl'/*,
-				resolve: {
-					loggedin: logMeIn
-				}*/
+				controller: 'dashCtrl'
 			})
 			.state('profile', {
 				url: '/profile',
-				templateUrl: 'views/profile.html'
+				// params: {
+				// 	username: null
+				// },
+				// resolve: {
+				// 	user: function($stateParams){
+				// 		return $scope.username;
+				// 	}
+				// },
+				templateUrl: 'views/profile.html',
+				controller: 'profileCtrl'
 			})
 			.state('students', {
 				url: '/students',
@@ -30,21 +36,4 @@ var app = angular.module('app', [
 				templateUrl: 'views/uploads.html'
 			});
 
-	}])
-	/*.config(function($httpProvider){
-		$httpProvider.interceptors.push(function($q, $location){
-			return {
-				response: function(response){
-					//$location.path(results.data.url);
-					$location.path('/dash');
-					return response;
-				},
-				responseError: function(response){
-					if(response.status === 401)
-						$location.url('/');
-					return $q.reject(response);
-				}
-			};
-		});
-
-	});*/
+	}]);

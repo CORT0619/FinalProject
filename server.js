@@ -7,7 +7,9 @@ var flash = require('connect-flash');
 var crypto = require('crypto');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var fs = require('fs');
 
+var formidable = require('formidable');
 
 // make connection to mongodb
 var uri = 'mongodb://localhost/StarLink';
@@ -63,8 +65,6 @@ passport.use(new LocalStrategy({
 			req.session.user = user.username;
 			req.session.id = user._id.toString();
 
-			console.log("id ", req.session.id);
-
 			return done(null, user);
 		});
 		
@@ -74,17 +74,23 @@ passport.use(new LocalStrategy({
 
 //configure passport
 passport.serializeUser(function(user, done){
-	done(null, user.username);
+	var sessUser = {_id: user._id, name: user.name, username: user.username, email: user.email, school: user.school, role: user.accType};
+	//done(null, user.username);
+	done(null, sessUser);
 });
 
-passport.deserializeUser(function(username, done){
+//passport.deserializeUser(function(username, done){
+passport.deserializeUser(function(sessUser, done){
 
-	User.findOne({username: username}, function(err, user){
+	User.findOne({username: sessUser.username}, function(err, user){
 		if(err) return done(err);
 
-		done(null, user);
+		//done(null, user);
+		done(null, sessUser);
 	});
 });
+
+
 
 
 var app = express();
@@ -106,19 +112,27 @@ app.use(passport.session());
 app.use(flash());
 
 
+
+
 // protect secure pages
-var auth = function(req, res, next){
+var auth = function(req, res/*, next*/){
 	if(!req.isAuthenticated()){
 		res.send(401);
 	} else {
-		next();
+		//next();
+
+		console.log("req.user ", req.user);
+		res.send(200, req.user);
 	}
 }
 
 
 
-
 // expressjs routes
+
+	app.post('/', function(req, res){
+
+	});
 
 	app.get('/loggedin', function(req, res){
 		res.send(req.isAuthenticated() ? req.user : '0');
@@ -159,53 +173,58 @@ var auth = function(req, res, next){
 
 	app.post('/login', passport.authenticate('local', { /*successRedirect: '/dash', failureRedirect: '/login',*/ failureFlash: 'Incorrect login name or password'}), function(req, res){
 
-		//console.log("req.session ", req.session);
-		//console.log("req.session.user ", req.session.user);
+		//console.log("blah ", req.flash('message')[0]);
 
-		console.log(req.flash('message')[0]);
+		console.log("authenticated ", req.isAuthenticated());
 
 		if(req.isAuthenticated()){
 
-			//res.redirect('/dash');
-			res.json({url: '/dash'});
-		} 
+			//res.json({url: '/dash'});
+			//res.json({req.session});
+			//res.send(200);
+			res.send(req.session);
+		} else {
+			res.send(401);
+		}
 
 	});
 
 
 	// route for uploads
-	//app.get('/uploads', function(req, res){
-/*
-		if(req.isAuthenticated()){
-			console.log(req.session);
-			res.sendFile(__dirname + '/views/uploads.html');
+	app.post('/uploads', function(req, res){
 
-		} else {
-			res.sendFile(__dirname + '/views/index.html');
-		}
-*/
-	//});
+		console.log("posted");
+
+		var form = new formidable.IncomingForm();
+
+		form.parse(req);
+
+		form.on('fileBegin', function(name, file){
+			file.path = __dirname + '/uploads/' + file.name; 
+		});
+
+		form.on('file', function(name, file){
+			console.log('Uploaded ' + file.name);
+		});
+
+	});
 
 	// route for profile
-	app.get('/profile/:user', function(req, res){
-/*
-		if(req.isAuthenticated()){
-			console.log(req.session);
-			res.sendFile(__dirname + '/views/profile.html');
+	// app.get('/profile/:user', function(req, res){
 
-		} else {
-			res.sendFile(__dirname + '/views/index.html');
-		}*/
-	});
+	// });
 
 	// route for viewing studdents
 	app.get('/students', function(req, res){
-/*		if(res.isAuthenticated()){
-			res.sendFile(__dirname + '/views/students.html');
-		} else {
-			res.sendFile(__dirname + '/views/index.html');
-		}
-		*/
+
+		User.find({'accType': 'stud'}, '_id name username email school accType', function(err, user){
+			if(err) return(err);
+
+			console.log('%d %s %s %s %s %s', user._id, user.name, user.username, user.email, user.school, user.accType);
+
+			res.send(user);
+		})
+		// res.send();
 	});
 
 	app.get('/logout', function(req, res){

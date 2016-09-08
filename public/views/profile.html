@@ -1,19 +1,21 @@
-<div class="row col-md-10">
+<div ng-controller="profileCtrl" class="row col-md-10">
 
-	<div id="bigUserImg">User Image</div>
+	<div id="bigUserImg"><img src="imgs/blankProfilePic.png" alt="profile picture"></div>
 
-	<form>
-		<p>Name <input type="text" name="name" id="name" disabled></p>
-		<p>School <input type="text" name="school" id="school"></p>
-		<p>Email <input type="text" name="email" id="email"></p>
-		<p>Username <input type="text" name="user" id="user">
-		<p>Password <input type="password" name="pass" id="pass">
-		   Confirm Password <input type="password" name="pass" id="pass"></p>
-		<p>Phone <input type="text" name="phone" id="phone"></p>
+	<div id="editProfile">
+		<form>
+			<p>Name <input type="text" name="name" id="name" ng-model="name" disabled></p>
+			<p>School <input type="text" name="school" id="school" ng-model="school"></p>
+			<p>Email <input type="text" name="email" id="email" ng-model="email"></p>
+			<p>Username <input type="text" name="user" id="user" ng-model="username">
+			<p>Password <input type="password" name="pass" id="pass">
+			   Confirm Password <input type="password" name="pass" id="pass"></p>
+			<p>Phone <input type="text" name="phone" id="phone" ng-model="phone"></p>
 
-		<button>Sumbit</button>				
+			<button class="btn btn-default btn-primary"><span class="glyphicon glyphicon-ok"> Update</span></button>				
 
-	</form>
+		</form>
+	</div>
 
 
 </div>

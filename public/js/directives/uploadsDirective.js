@@ -3,12 +3,12 @@ app.directive('dropzone', function(){
 		restrict: 'C',
 		link: function(scope, element, attrs){
 			var config = {
-				url: 'htttp://localhost:3000/#/uploadIt', // or localhost:3000/upload
+				url: '/uploads', // or localhost:3000/upload http://localhost:3000/#/uploadIt
 				maxFilesize: 100,
 				paramName: "uploadfile",
 				maxThumbnailFilesize: 10,
 				parallelUploads: 1,
-				autoProcessQueue: false 
+				autoProcessQueue: true
 			};
 
 			var eventHandlers = {
@@ -22,7 +22,8 @@ app.directive('dropzone', function(){
 					});
 				},
 				'success': function(file, response){
-
+					// return file.previewElement.classList.add("dz-success");
+					console.log('success');
 				}
 			};
 
@@ -38,6 +39,7 @@ app.directive('dropzone', function(){
 
 			scope.resetDropzone = function(){
 				dropzone.removeAllFiles();
+				dropzone.emptyfiles();
 			}
 		}
 	}

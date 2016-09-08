@@ -1,6 +1,7 @@
-app.controller('menubarCtrl', ['$scope', '$http', '$window', '$location', '$state', function($scope, $http, $window, $location, $state){
+app.controller('menubarCtrl', ['$scope', 'loginService','$http', '$location', '$state', '$window', '$sessionStorage', '$localStorage', function($scope, loginService, $http, $location, $state, $window, $sessionStorage, $localStorage){
 
 	$scope.$state = $state;
+	$scope.$storage = $localStorage;
 
 	$scope.showLogin = false;
 	$scope.isLoggedIn;
@@ -9,47 +10,46 @@ app.controller('menubarCtrl', ['$scope', '$http', '$window', '$location', '$stat
 		$scope.showLogin = !$scope.showLogin;
 	}
 
-	$scope.logMeIn = function(username, password/*, $q, $timeout, $http, $location, $rootScope*/){
+
+	$scope.logMeIn = function(username, password){
 		$scope.isLoggedIn = false;
-		var data = $.param({
-			user: username,
-			pass: password
-		});
 
-		//var deferred = $q.defer();
+		loginService.func1(username, password)
+			.then(function(res){
 
-		$http({
-			method: 'POST',
-			url: '/login',
-			data: data,
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				$scope.userExists = loginService.func2();
 
-		})/*.success(function(user){
-			if(user !== '0')
-				deferred.resolve();
-			else {
-				$rootScope.message = 'Please login.';
-				deferred.reject();
-				$location.url('/');
-			}
+				if($scope.userExists){
+					$scope.isLoggedIn = true;
 
-		});*/
+				 $scope.user = {
+				 	username: res.data.passport.user.username,
+					name: res.data.passport.user.name,
+					email: res.data.passport.user.email,
+					school: res.data.passport.user.school,
+					id: res.data.passport.user._id,
+					role: res.data.passport.user.role
+				 }
 
-		//return deferred.promise;
-		.then(function(results){
+				 console.log("$scope.user ", $scope.user);
+				 $localStorage.userData = $scope.user; 
 
-			console.log("results.url ", results.data.url);
+				 $scope.username = $scope.user.username;
 
-			///$window.location.href= results.data.url;
-			$location.path(results.data.url);
-			$scope.isLoggedIn = true;
-			console.log($scope.isLoggedIn);
-		});
+					$location.path('/dash');
+					$scope.showLogin = !$scope.showLogin;
+
+					console.log("results ", res);
+
+				} else {
+					$window.location.reload();
+				}
+
+			}).catch(function(){
+				console.log("login failed");
+				// $window.location.reload();
+			});
 	}
 
 	}]);
-
-app.service('logMeIn', function(){
-
-});
 

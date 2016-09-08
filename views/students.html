@@ -1,0 +1,21 @@
+<div ng-controller="studentCtrl" class="row col-md-10 col-md-offset-1 text-center" ngcloak>
+
+<h2>Students</h2>
+
+<div class="table-responsive">
+	<table class="table table-striped">
+		<tr><th>#</th><th>Name</th><th>Email</th><th>School</th><th>Phone</th></tr>
+		<tr ng-repeat="student in students">
+			<td></td>
+			<td>{{student.name}}</td>
+			<td>{{student.email}}</td>
+			<td>{{student.school}}</td>
+			<td></td>
+		</tr>
+	</table>
+</div>
+
+</div>	
+	
+
+	
