@@ -12,7 +12,8 @@ var fs = require('fs');
 var formidable = require('formidable');
 
 // make connection to mongodb
-var uri = 'mongodb://localhost/StarLink';
+var uri = process.env.MONGODB_URI;
+	// var uri = 'mongodb://localhost/StarLink';
 mongoose.connect(uri);
 
 var db = mongoose.connection;
@@ -210,7 +211,7 @@ var auth = function(req, res/*, next*/){
 
 			console.log('username ', username);
 			//User.findOneAndUpdate({'username': username}, {$push: {'uploads': item}}, {safe: true, upsert: true}
-			User.findOneAndUpdate({'username': username}, {$push: {'uploads': item}}, {upsert: false}, function(err, user){
+			User.findOneAndUpdate({'username': username}, {$push: {uploads: item}}, {upsert: false}, function(err, user){
 				if(err) return err;
 
 				console.log("err ", err);
