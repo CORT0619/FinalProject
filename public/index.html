@@ -54,7 +54,7 @@
 			<ng-include ng-hide="$state.$current.name === 'home' || $state.$current.name === 'register'"></ng-include>
 		</div>
 
-		<div ng-class="$state.$current.name !== 'home' | $state.current.name !== 'register' ? 'col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2' : 'col-sm-12 col-md-12'" class="main">
+		<div ng-class="$state.$current.name !== 'home' || $state.$current.name !== 'register' ? 'col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2' : 'col-sm-12 col-md-12'" class="main">
 			<div ui-view></div>
 		</div>	
 	</div>
@@ -69,6 +69,7 @@
 <!-- directives -->
 <!-- <script type="text/javascript" src="js/directives/menuBar.js"></script> -->
 <script type="text/javascript" src="js/directives/uploadsDirective.js"></script>
+<script type="text/javascript" src="js/directives/modal.js"></script>
 
 <!-- controllers -->
 <script type="text/javascript" src="js/controllers/indexController.js"></script>

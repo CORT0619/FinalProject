@@ -7,7 +7,7 @@ app.controller('registerCtrl', ['$scope', '$http', '$window', function($scope, $
 
 	$scope.registerMe = function() {
 
-		console.log($scope.username);
+		console.log("phone ", $scope.phone);
 
 		var data = $.param({
 			name: $scope.firstName + ' ' + $scope.lastName,
@@ -15,7 +15,8 @@ app.controller('registerCtrl', ['$scope', '$http', '$window', function($scope, $
 			pass: $scope.pass,
 			email: $scope.email,
 			school: $scope.school,
-			accType: $scope.accType 
+			accType: $scope.accType, 
+			phone: $scope.phone
 		});
 
 		$http({

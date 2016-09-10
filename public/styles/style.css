@@ -421,10 +421,11 @@ form#dropzone {
 
 /*  footer */
 .footer {
-	position: absolute;
+/*	position: absolute;
 	bottom: 5px;
 	left: 0;
-	right: 0;
+	right: 0;*/
+	margin-top: 200px;
 }
 
 

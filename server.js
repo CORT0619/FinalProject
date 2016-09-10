@@ -12,8 +12,8 @@ var fs = require('fs');
 var formidable = require('formidable');
 
 // make connection to mongodb
-var uri = process.env.MONGODB_URI;
-	// var uri = 'mongodb://localhost/StarLink';
+//var uri = process.env.MONGODB_URI;
+	var uri = 'mongodb://localhost/StarLink';
 mongoose.connect(uri);
 
 var db = mongoose.connection;
@@ -33,7 +33,8 @@ var userSchema = new Schema({
 	pass	: {},
 	email	: String,
 	school	: String,
-	accType	: String
+	accType	: String,
+	phone	: String
 });
 
 var User = mongoose.model
@@ -75,7 +76,7 @@ passport.use(new LocalStrategy({
 
 //configure passport
 passport.serializeUser(function(user, done){
-	var sessUser = {_id: user._id, name: user.name, username: user.username, email: user.email, school: user.school, role: user.accType};
+	var sessUser = {_id: user._id, name: user.name, username: user.username, email: user.email, school: user.school, role: user.accType, phone: user.phone};
 
 	done(null, sessUser);
 });
@@ -156,7 +157,7 @@ var auth = function(req, res/*, next*/){
 
 		var updatedPass = crypto.createHmac('sha512', req.body.pass).update(hash).digest('hex');
 
-		var newUser = new User({name: req.body.name, username: req.body.user, pass: updatedPass, email: req.body.email, school: req.body.school, accType: req.body.accType});
+		var newUser = new User({name: req.body.name, username: req.body.user, pass: updatedPass, email: req.body.email, school: req.body.school, accType: req.body.accType, phone: req.body.phone});
 
 		newUser.save(function(err, newUser){
 			if (err) return console.error(err);
@@ -240,7 +241,7 @@ var auth = function(req, res/*, next*/){
 	// route for viewing students
 	app.get('/students', function(req, res){
 
-		User.find({'accType': 'stud'}, '_id name username email school accType', function(err, user){
+		User.find({'accType': 'stud'}, '_id name username email school accType phone', function(err, user){
 			if(err) return(err);
 
 			res.send(user);
