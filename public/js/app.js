@@ -35,6 +35,10 @@ var app = angular.module('app', [
 			.state('uploads', {
 				url: '/uploads',
 				templateUrl: 'views/uploads.html'
+			})
+			.state('register', {
+				url: '/register',
+				templateUrl: 'views/register.html'
 			});
 
 	}]);
