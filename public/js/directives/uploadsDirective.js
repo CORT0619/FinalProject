@@ -5,10 +5,11 @@ app.directive('dropzone', function(){
 			var config = {
 				url: '/uploads', // or localhost:3000/upload http://localhost:3000/#/uploadIt
 				maxFilesize: 100,
-				paramName: "uploadfile",
+				paramName: "file",
 				maxThumbnailFilesize: 10,
 				parallelUploads: 1,
-				autoProcessQueue: true
+				autoProcessQueue: true,
+				previewsContainer: '#dropzone'
 			};
 
 			var eventHandlers = {
@@ -22,8 +23,15 @@ app.directive('dropzone', function(){
 					});
 				},
 				'success': function(file, response){
-					// return file.previewElement.classList.add("dz-success");
-					console.log('success');
+					console.log("file ", file);
+					console.log("response ", response)
+
+					var elm = document.getElementsByClassName("dz-progress");
+					elm[0].parentNode.removeChild(elm[0]);
+
+					file.previewElement.appendChild(file._downloadLink);
+					file.previewElement.appendChild(document.createTextNode(response)); 
+					return file.previewElement.classList.add("dz-success");
 				}
 			};
 

@@ -1,4 +1,4 @@
-app.controller('profileCtrl', ['$scope', 'loginService','$http', '$location', '$sessionStorage', '$localStorage', function($scope, loginService, $http, $location, $sessionStorage, $localStorage){
+app.controller('profileCtrl', ['$scope', 'loginService','$http', '$location', '$sessionStorage', '$localStorage', '$stateParams', function($scope, loginService, $http, $location, $sessionStorage, $localStorage, $stateParams){
 
 	$scope.userExists = loginService.func2();
 
@@ -12,6 +12,8 @@ app.controller('profileCtrl', ['$scope', 'loginService','$http', '$location', '$
 	$scope.school = $scope.user.school;
 	$scope.email = $scope.user.email;
 	$scope.username = $scope.user.username;	
+
+	$stateParams.username= $scope.username;
 
 
 	if($scope.userExists){

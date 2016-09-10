@@ -1,4 +1,4 @@
-app.controller('uploadsCtrl', ['$scope', 'loginService', '$location', '$sessionStorage', '$localStorage', function($scope, loginService, $location, $sessionStorage, $localStorage){
+app.controller('uploadsCtrl', ['$scope', 'loginService', '$location', '$sessionStorage', '$localStorage', '$state', function($scope, loginService, $location, $sessionStorage, $localStorage, $state){
 
 		$scope.partialDownloadLink = 'http://localhost:3000/#/download?filename=';
 		$scope.filename= '';
@@ -17,8 +17,11 @@ app.controller('uploadsCtrl', ['$scope', 'loginService', '$location', '$sessionS
 
 			console.log("session storage ", $sessionStorage.name);
 
-			console.log("localStorage ", $localStorage.name);
-			console.log("localstorage role ", $localStorage.role);
+		$scope.user = $localStorage.userData;
+
+		$scope.username = $scope.user.username;
+
+		// $state.go("uploads", {username: $scope.user.username});
 
 		if($scope.userExists){
 			$scope.loggedIn = true;

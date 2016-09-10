@@ -7,6 +7,10 @@
 	font-family: Myriad Pro;
 }*/
 
+html, body {
+	height: 100%;
+}
+
 .pagesBgColor {
 	background-color: #FCFCFD;
 }
@@ -205,6 +209,7 @@ menu-bar {
 	border-radius: 3px;
 	position: absolute;
 	right: 30px;
+	background-color: #FFF;
 }
 
 #loginBox h3 {
@@ -341,6 +346,10 @@ h2 {
 }
 
 /* bootstrap overriding */
+
+.row {
+	height: 100% !important;
+}
 .navbar-collapse.in {
 	overflow-y: unset;
 }
@@ -365,22 +374,33 @@ h2 {
 	background-color: #FCFCFD;
 /*	padding: unset;*/
 	padding: 20px;
+	height: 100%
 }
 
 /*  Profile.html  */
 
+#editProfile input[type=text], #editProfile input[type=password] {
+	border-radius: 3px;
+	border: 1px solid #e6e6e6;
+	padding: 5px 8px;
+	font-size: 16px;
+}
+
 
 #bigUserImg {
-	width: 11%;
+/*	width: 11%;*/
 	/*height: 50px;*/
 	border: 1px solid #000;
-	padding: 3px;
+	padding: 3px 4px 3px 3px;
 	overflow: hidden;
+	margin-bottom: 25px;
+	max-width: 133px;
+	margin: 0 auto;
 }
 
-#editProfile {
+/*#editProfile {
 	margin-top: 25px;
-}
+}*/
 
 p.footer {
 	position: relative;

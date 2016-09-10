@@ -1,0 +1,5 @@
+chase: $1,784.21
+fedloan: $3,651.02
+sallie mae: $9,
+
+

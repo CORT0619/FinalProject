@@ -1,18 +1,46 @@
-<div ng-controller="profileCtrl" class="row col-md-10">
+<!-- <div ng-controller="profileCtrl" class="row col-md-10 col-md-offset-1" ng-cloak> -->
+<div ng-controller="profileCtrl" class="container" ng-cloak>
 
-	<div id="bigUserImg"><img src="imgs/blankProfilePic.png" alt="profile picture"></div>
-
-	<div id="editProfile">
+	<!-- <div id="editProfile" class="col-md-7 col-md-offset-3"> -->
+	<div id="editProfile" class="col-sm-9 col-sm-offset-1">
+	<div id="bigUserImg" class="text-center"><img src="imgs/blankProfilePic.png" alt="profile picture"></div>
 		<form>
-			<p>Name <input type="text" name="name" id="name" ng-model="name" disabled></p>
-			<p>School <input type="text" name="school" id="school" ng-model="school"></p>
-			<p>Email <input type="text" name="email" id="email" ng-model="email"></p>
-			<p>Username <input type="text" name="user" id="user" ng-model="username">
-			<p>Password <input type="password" name="pass" id="pass">
-			   Confirm Password <input type="password" name="pass" id="pass"></p>
-			<p>Phone <input type="text" name="phone" id="phone" ng-model="phone"></p>
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input type="text" class="form-control" name="name" id="name" ng-model="name" disabled>
+			</div>
 
-			<button class="btn btn-default btn-primary"><span class="glyphicon glyphicon-ok"> Update</span></button>				
+			<div class="form-group">
+				<label for="school">School</label>
+				<input type="text" class="form-control" name="school" id="school" ng-model="school">
+			</div>
+
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input type="text" class="form-control" name="email" id="email" ng-model="email">
+			</div>
+
+<!-- 			<div class="form-group clearfix">
+				<label for="username">Username</label>
+				<input type="text" class="form-control" name="user" id="user" ng-model="username">
+			</div> -->
+
+			<div class="form-group">
+				<label for="pass">Password</label>
+				<input type="password" class="form-control" name="pass" id="pass">
+			</div>
+
+			<div class="form-group">
+				<label for="pass">Confirm Password</label>
+				<input type="password" class="form-control" name="pass" id="pass">
+			</div>
+
+			<div class="form-group">
+				<label for="phone">Phone</label>
+				<input type="text" class="form-control" name="phone" id="phone" ng-model="phone">
+			</div>
+
+			<p class="text-center"><button class="btn btn-default btn-primary"><span class="glyphicon glyphicon-ok"> Update</span></button></p>			
 
 		</form>
 	</div>

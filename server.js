@@ -75,17 +75,15 @@ passport.use(new LocalStrategy({
 //configure passport
 passport.serializeUser(function(user, done){
 	var sessUser = {_id: user._id, name: user.name, username: user.username, email: user.email, school: user.school, role: user.accType};
-	//done(null, user.username);
+
 	done(null, sessUser);
 });
 
-//passport.deserializeUser(function(username, done){
 passport.deserializeUser(function(sessUser, done){
 
 	User.findOne({username: sessUser.username}, function(err, user){
 		if(err) return done(err);
 
-		//done(null, user);
 		done(null, sessUser);
 	});
 });
@@ -166,10 +164,6 @@ var auth = function(req, res/*, next*/){
 		res.send({});
 	});
 
-	/*app.post('/login', passport.authenticate('local', function(err, user, info){
-		if(err) return 
-
-	}));*/
 
 	app.post('/login', passport.authenticate('local', { /*successRedirect: '/dash', failureRedirect: '/login',*/ failureFlash: 'Incorrect login name or password'}), function(req, res){
 
@@ -193,6 +187,8 @@ var auth = function(req, res/*, next*/){
 	// route for uploads
 	app.post('/uploads', function(req, res){
 
+		var username = req.user.username; 
+ 		
 		console.log("posted");
 
 		var form = new formidable.IncomingForm();
@@ -205,7 +201,32 @@ var auth = function(req, res/*, next*/){
 
 		form.on('file', function(name, file){
 			console.log('Uploaded ' + file.name);
+
+			var item = {
+				name: file.name,
+				size: file.size,
+				path: __dirname + '/uploads/' + file.name
+			}
+
+			console.log('username ', username);
+			//User.findOneAndUpdate({'username': username}, {$push: {'uploads': item}}, {safe: true, upsert: true}
+			User.findOneAndUpdate({'username': username}, {$push: {'uploads': item}}, {upsert: false}, function(err, user){
+				if(err) return err;
+
+				console.log("err ", err);
+
+				console.log("user ", user);
+
+				//res.status(200).send(file);
+
+				if(user)
+					res.send(user);
+			});
 		});
+
+
+		//res.status(200).send(file);
+		res.send("ok");
 
 	});
 
@@ -214,17 +235,20 @@ var auth = function(req, res/*, next*/){
 
 	// });
 
-	// route for viewing studdents
+
+	// route for viewing students
 	app.get('/students', function(req, res){
 
 		User.find({'accType': 'stud'}, '_id name username email school accType', function(err, user){
 			if(err) return(err);
 
-			console.log('%d %s %s %s %s %s', user._id, user.name, user.username, user.email, user.school, user.accType);
-
 			res.send(user);
-		})
-		// res.send();
+		});
+	});
+
+	// update user info
+	app.post('/profile', function(req, res){
+		User.findOneAndUpdate({ 'username': req.user.username}, { 'password': ''});
 	});
 
 	app.get('/logout', function(req, res){

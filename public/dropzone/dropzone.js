@@ -118,7 +118,7 @@
       method: "post",
       withCredentials: false,
       parallelUploads: 1,
-      uploadMultiple: false,
+      uploadMultiple: true,
       maxFilesize: 256,
       paramName: "file",
       createImageThumbnails: true,
@@ -1463,7 +1463,7 @@
     return element.dropzone;
   };
 
-  Dropzone.autoDiscover = true;
+  Dropzone.autoDiscover = false; // i changed this
 
   Dropzone.discover = function() {
     var checkElements, dropzone, dropzones, _i, _len, _results;

@@ -1,8 +1,8 @@
 		<div id="outer-container" ng-controller="menubarCtrl">
 			<ul class="nav nav-sidebar" id="top-ul">
 				<li><a href="#/dash"><span class="glyphicon glyphicon-home"> Dashboard</span></a></li>
-				<li><a ui-sref="profile({username: $scope.username})"><span class="glyphicon glyphicon-pencil"> Profile</span></a>
-					<ul>
+				<li><a ui-sref="profile({username: $parent.username})"><span class="glyphicon glyphicon-pencil"> Profile</span></a>
+					<ul> 
 						<li><span class="glyphicon glyphicon-cog"> Change Password</span></li>
 					</ul></li>
 				<li><a href="#/uploads"><span class="glyphicon glyphicon-open"> Uploads</span></a></li>
@@ -14,7 +14,7 @@
 			<ul class="nav nav-sidebar text-center" id="bottom-ul">
 				<!--<li>Change Password</li>-->
 				<li><a href="/logout">Logout</a></li>
-				<li>&copy; Crystal R. Williams</li>
+				<li>&copy; Crystal R. Williams {{$parent.username}}</li>
 			</ul>
 			</div>
 		</div>	

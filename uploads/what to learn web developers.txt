@@ -1,0 +1,82 @@
+Best text editors
+-----------------
+atom.io
+sublime text
+brackets.io (great for beginners)
+
+
+what to learn 2016/17
+---------------------
+javascript
+basic ssh (get files on server over ftp)
+learn how client and server talk to each other
+restful web services/ get post put delete requests (send info back/forth)
+
+ front end
+----------
+es6/es2015 (babel)
+precompilers: sass/less
+css frameworks: bootstrap/foundation
+responsive design with css
+task runner: gulp, grunt
+dependency management: browserify(may not need to learn it), webpack
+front end build tools (may not need to learn): bower/package management, yeoman.io
+javascript frameworks: react (flux), angular, ember.js (massive apps)
+unit testing: mocha, jasmine, karma, enzyme (react testing)
+
+backend
+--------
+scripting language: nodejs(express, hapi), python, ruby, php
+functional languages: elixir, scala, clojure, haskell
+high perf/compiled languages: go, rust, java, c#
+
+
+- in any language learn unit/functional testing 
+- build a restful api
+- security
+- authorization/authentication (oauth2, json webtoken)
+- soa (service oriented architecture/microservices)
+- deploy the app (nodejs - flightplan)
+- websocket
+- ORM (manage objects how they will fetch and save from the db)/data structure 
+
+dbs
+----
+relational: mysql, postgreSQL
+redis/sessions/caching
+document: mongodb, couchbase, rethinkdb
+search engine: elasticsearch, solr
+
+caching
+-------
+nginx(server)
+apache (server)
+db (redis)
+in-memory
+
+after backend
+-------------
+devops (workflows): digital ocean, amazon web services (AWS), azure, rackspace, heroku
+
+
+server management
+------------------
+linux
+docker
+ansible
+
+continuous testing & deployment
+---------------------------------------
+jenkins (on your own hardware)
+semaphoreCI
+circleCI
+codeship
+
+
+docker (containerized apps and dbs)
+-----------------------------------
+big scale: kubernetes, mesos
+small scale: docker swarm, docker 1.12 swarm
+ui driven: rancher, docker cloud, docker datacenter/universal control plane
+
+vagrant (docker replacing)

@@ -5,6 +5,7 @@ app.controller('menubarCtrl', ['$scope', 'loginService','$http', '$location', '$
 
 	$scope.showLogin = false;
 	$scope.isLoggedIn;
+	
 
 	$scope.toggle = function(){
 		$scope.showLogin = !$scope.showLogin;
@@ -31,6 +32,7 @@ app.controller('menubarCtrl', ['$scope', 'loginService','$http', '$location', '$
 					role: res.data.passport.user.role
 				 }
 
+				
 				 console.log("$scope.user ", $scope.user);
 				 $localStorage.userData = $scope.user; 
 
@@ -41,6 +43,8 @@ app.controller('menubarCtrl', ['$scope', 'loginService','$http', '$location', '$
 
 					console.log("results ", res);
 
+					return  $scope.user; 
+
 				} else {
 					$window.location.reload();
 				}
@@ -50,6 +54,17 @@ app.controller('menubarCtrl', ['$scope', 'loginService','$http', '$location', '$
 				// $window.location.reload();
 			});
 	}
+
+
+	/*if($scope.userExists){
+	$scope.username = $localStorage.userData.username;
+
+	console.log("$scope.username is now ", $scope.username);
+	} else {
+		$scope.loggedIn = false;
+		$location.path('/');
+	}*/
+
 
 	}]);
 

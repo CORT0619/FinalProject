@@ -4,8 +4,11 @@
 	<!-- <button class="btn btn-default"><span class="glyphicon glyphicon-paperclip"> Upload</span></button> -->
 
 	<form id="dropzone" action="/uploads" method="post" class="dropzone" enctype="multipart/form-data">
-		<input type="file" name="uploaded">
-		<div class="dz-default dz-message">
+		<!-- <div class="fallback"> -->
+			<input type="file" name="file">
+			<input type="hidden" name="username" ng-value="username">
+		<!-- </div> -->
+		<div class="dz-default dz-message dz-clickable">
 			<span class="glyphicon glyphicon-paperclip"> Drop files here to upload and click "Upload"</span>
 		</div>
 	</form>

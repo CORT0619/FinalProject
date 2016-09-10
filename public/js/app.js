@@ -15,6 +15,7 @@ var app = angular.module('app', [
 				controller: 'dashCtrl'
 			})
 			.state('profile', {
+				// url: '/profile/:username',
 				url: '/profile',
 				// params: {
 				// 	username: null
