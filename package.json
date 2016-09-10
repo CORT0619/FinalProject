@@ -1,0 +1,40 @@
+{
+  "name": "starlink",
+  "version": "1.0.0",
+  "description": "app that connects student athletes with college coaches",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
+    "concat-stream": "^1.5.2",
+    "cookie-parser": "^1.4.3",
+    "connect-busboy": "^0.0.2",
+    "css-loader": "^0.24.0",
+    "express-session": "^1.14.1",
+    "es6-promise": "^3.2.1",
+    "express": "^4.14.0",
+    "formidable": "^1.0.17",
+    "mongojs": "^2.4.0",
+    "mkdirp": "^0.5.1",
+    "object-assign": "^4.1.0",
+    "mongoose": "^4.5.9",
+    "style-loader": "^0.13.1",
+    "passport-local": "^1.0.0",
+    "passport": "^0.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CORT0619/FinalProject.git"
+  },
+  "author": "Crystal R. Williams",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CORT0619/FinalProject/issues"
+  },
+  "homepage": "https://github.com/CORT0619/FinalProject#readme"
+}
