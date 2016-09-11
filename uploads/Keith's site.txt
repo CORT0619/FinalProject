@@ -1,9 +1,0 @@
-keith's site:
---------------
-- sidebar isn't toggling correctly??
-- on resize sidebar & hamburger doesn't appear
-
-
--why doesn't jquery width and app width give the same value
-
-- is it possible to move down a fieldset?

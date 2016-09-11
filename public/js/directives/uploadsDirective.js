@@ -28,9 +28,11 @@ app.directive('dropzone', function(){
 
 					var elm = document.getElementsByClassName("dz-progress");
 					elm[0].parentNode.removeChild(elm[0]);
-
-					file.previewElement.appendChild(file._downloadLink);
-					file.previewElement.appendChild(document.createTextNode(response)); 
+					var newDiv = document.createElement('div');
+					newDiv.innerHTML = "Link goes here";
+					file.previewElement.appendChild(newDiv);
+					//file.previewElement.appendChild(document.createTextNode(response)); 
+					alert("File uploaded")
 					return file.previewElement.classList.add("dz-success");
 				}
 			};

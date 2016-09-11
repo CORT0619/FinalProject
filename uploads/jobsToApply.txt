@@ -1,8 +1,0 @@
-jobs
-----
-API Developer (linkedin)
-Front End/Mobile Developer (linkedin)
-IT Consultant Web Developer (glassdoor)
-Front ENd Developer (On-Site) (glassdoor)
-Web Developer - Orange Lake Resorts (glassdoor)
-Full Stack Web Developer Engineer - AKT (glassdoor)

@@ -12,8 +12,8 @@ var fs = require('fs');
 var formidable = require('formidable');
 
 // make connection to mongodb
-var uri = process.env.MONGODB_URI;
-	//var uri = 'mongodb://localhost/StarLink';
+//var uri = process.env.MONGODB_URI;
+	var uri = 'mongodb://localhost/StarLink';
 mongoose.connect(uri);
 
 var db = mongoose.connection;
@@ -34,7 +34,8 @@ var userSchema = new Schema({
 	email	: String,
 	school	: String,
 	accType	: String,
-	phone	: String
+	phone	: String,
+	uploads : []
 });
 
 var User = mongoose.model
@@ -106,7 +107,7 @@ app.use(express.static(process.cwd() + '/public'));
 app.use(session({secret: 'cookies pretty',
 				 saveUninitialized: false,
 				 resave: false,
-				 cookie: {maxAge: 180000}}));
+				 cookie: {maxAge: 300000}}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -190,6 +191,8 @@ var auth = function(req, res/*, next*/){
 	app.post('/uploads', function(req, res){
 
 		var username = req.user.username; 
+
+		var dateTime = new Date().getTime();
  		
 		console.log("posted");
 
@@ -198,37 +201,36 @@ var auth = function(req, res/*, next*/){
 		form.parse(req);
 
 		form.on('fileBegin', function(name, file){
-			file.path = __dirname + '/uploads/' + file.name; 
+			//file.path = __dirname + '/uploads/' + new Date().getTime() + " - " + file.name;
+			file.path = __dirname + '/uploads/' + dateTime + " - " + file.name;  
 		});
 
 		form.on('file', function(name, file){
+
 			console.log('Uploaded ' + file.name);
 
 			var item = {
-				name: file.name,
+				name: dateTime + " - " + file.name,
 				size: file.size,
-				path: __dirname + '/uploads/' + file.name
+				path: __dirname + '/uploads/' + dateTime + " - " + file.name
+				//path: __dirname + '/uploads/' + new Date().getTime() + " - " + file.name
 			}
 
 			console.log('username ', username);
 			//User.findOneAndUpdate({'username': username}, {$push: {'uploads': item}}, {safe: true, upsert: true}
-			User.findOneAndUpdate({'username': username}, {$push: {uploads: item}}, {upsert: false}, function(err, user){
+			User.findOne({'username': username}).exec(function(err, user){
 				if(err) return err;
 
-				console.log("err ", err);
-
-				console.log("user ", user);
-
-				//res.status(200).send(file);
-
-				if(user)
-					res.send(user);
-			});
+				user.uploads.push(item);
+				user.save(function(){
+					res.send(user)
+				});
+			})
 		});
 
 
 		//res.status(200).send(file);
-		res.send("ok");
+		// res.send("ok");
 
 	});
 
@@ -241,7 +243,7 @@ var auth = function(req, res/*, next*/){
 	// route for viewing students
 	app.get('/students', function(req, res){
 
-		User.find({'accType': 'stud'}, '_id name username email school accType phone', function(err, user){
+		User.find({'accType': 'stud'}, '_id name username email school accType phone uploads', function(err, user){
 			if(err) return(err);
 
 			res.send(user);

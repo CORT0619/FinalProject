@@ -345,6 +345,12 @@ h2 {
 	display: none;
 }
 
+/* students.html  */
+
+.uploadLinks{
+	color: #000080;
+}
+
 /* bootstrap overriding */
 
 .row {
