@@ -39,6 +39,12 @@ var app = angular.module('app', [
 			.state('register', {
 				url: '/register',
 				templateUrl: 'views/register.html'
+			})
+			.state('logout', {
+				url: '/logout',
+				onEnter: function(){
+					$localStorage.$reset();
+				}
 			});
 
 	}]);

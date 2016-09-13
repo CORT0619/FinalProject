@@ -12,8 +12,8 @@ var fs = require('fs');
 var formidable = require('formidable');
 
 // make connection to mongodb
-//var uri = process.env.MONGODB_URI;
-	var uri = 'mongodb://localhost/StarLink';
+var uri = process.env.MONGODB_URI;
+	//var uri = 'mongodb://localhost/StarLink';
 mongoose.connect(uri);
 
 var db = mongoose.connection;
@@ -56,14 +56,13 @@ passport.use(new LocalStrategy({
 
 			if(!user) return done(null, false/*, req.flash('message', 'Incorrect login name or password')*/);
 
-			var encryptIt = crypto.createHmac('sha512', password).update(hash).digest('hex');
+			var encryptIt = encryptPass(password);
+			//var encryptIt = crypto.createHmac('sha512', password).update(hash).digest('hex');
 
 			if(user.pass != encryptIt){
 
 			 	return done(null, false/*, req.flash('message', 'Incorrect login name or password')*/);
 			}
-
-			console.log("user ", user);
 
 			req.session.user = user.username;
 			req.session.id = user._id.toString();
@@ -125,6 +124,11 @@ var auth = function(req, res/*, next*/){
 		console.log("req.user ", req.user);
 		res.send(200, req.user);
 	}
+}
+
+// encrypt password
+function encryptPass(password){
+	return crypto.createHmac('sha512', password).update(hash).digest('hex');
 }
 
 
@@ -234,17 +238,11 @@ var auth = function(req, res/*, next*/){
 
 	});
 
-	// route for profile
-	// app.get('/profile/:user', function(req, res){
-
-	// });
-
-
 	// route for viewing students
 	app.get('/students', function(req, res){
 
 		User.find({'accType': 'stud'}, '_id name username email school accType phone uploads', function(err, user){
-			if(err) return(err);
+			if(err) return err;
 
 			res.send(user);
 		});
@@ -252,7 +250,14 @@ var auth = function(req, res/*, next*/){
 
 	// update user info
 	app.post('/profile', function(req, res){
-		User.findOneAndUpdate({ 'username': req.user.username}, { 'password': ''});
+
+		var password = encryptPass(req.body.password);
+		User.findOneAndUpdate({username: req.body.username}, {pass: password}, function(err, user){
+		
+				if(err) return err;
+
+				res.send("Profile updated successfully!");
+		});
 	});
 
 	app.get('/logout', function(req, res){

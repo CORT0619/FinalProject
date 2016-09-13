@@ -1,6 +1,11 @@
-app.factory('profileService', ['$http', function($http){
+app.factory('profileService', ['$http', '$q', function($http, $q){
 
-		var updateProfile = function(data){
+		var updateProfile = function(username, pass){
+
+			var data = $.param({
+				username: username,
+				password: pass
+			});
 
 			return $http({
 				method: 'POST',
@@ -15,7 +20,6 @@ app.factory('profileService', ['$http', function($http){
 			}, function error(results){
 				console.log("err is ", results);
 				return results;
-
 			});
 
 		};

@@ -16,7 +16,7 @@
 				<li><a href="#">Contact Us</a></li>
 			</ul>
 
-			<ul class="nav nav-sidebar" id="embedded-sidebar">
+			<ul class="nav nav-sidebar" id="embedded-sidebar" ng-show="isLoggedIn">
 				<li><a href="/dash"><span class="glyphicon glyphicon-home"> Dashboard</span></a></li>
 				<li><a href="/profile"><span class="glyphicon glyphicon-pencil"> Profile</span></a>
 					<ul>
@@ -26,12 +26,12 @@
 				<li><a href="#"><span class="glyphicon glyphicon-education"> Scholarships</span></a></li>
 			</ul>
 
-			<div id="loginContainer" class="nav navbar-right" ng-show="!isLoggedIn">
-				<div ng-click="toggle()" class="pointer glyphicon glyphicon-user" style="color: #FFF">Login</div>
-			</div>
+			<div id="loginContainer" class="nav navbar-right">
+				<div ng-click="toggle()" ng-show="!isLoggedIn" class="pointer glyphicon glyphicon-user" style="color: #FFF">Login</div>
+			<!--</div>-->
 
-			<div id="logoutContainer" class="nav navbar-right" ng-show="isLoggedIn">
-				<a href="/logout"><div class="pointer glyphicon glyphicon-user" style="color: #FFF">Logout</div></a>
+			<!--<div id="logoutContainer" class="nav navbar-right" ng-show="isLoggedIn">-->
+				<a href="/logout" ng-show="isLoggedIn"><div ng-show="isLoggedIn" class="pointer glyphicon glyphicon-user" style="color: #FFF">Logout</div></a>
 			</div>		
 		</div>		
 	</div>

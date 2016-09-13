@@ -1,10 +1,12 @@
 <!-- <div ng-controller="profileCtrl" class="row col-md-10 col-md-offset-1" ng-cloak> -->
 <div ng-controller="profileCtrl" class="container" ng-cloak>
 
+	<profile-modal visible="showModal"></profile-modal>
+
 	<!-- <div id="editProfile" class="col-md-7 col-md-offset-3"> -->
 	<div id="editProfile" class="col-sm-9 col-sm-offset-1">
 	<div id="bigUserImg" class="text-center"><img src="imgs/blankProfilePic.png" alt="profile picture"></div>
-		<form>
+		<form name="profileUpdate_form">
 			<div class="form-group">
 				<label for="name">Name</label>
 				<input type="text" class="form-control" name="name" id="name" ng-model="name" disabled>
@@ -12,12 +14,12 @@
 
 			<div class="form-group">
 				<label for="school">School</label>
-				<input type="text" class="form-control" name="school" id="school" ng-model="school">
+				<input type="text" class="form-control" name="school" id="school" ng-model="school" disabled>
 			</div>
 
 			<div class="form-group">
 				<label for="email">Email</label>
-				<input type="text" class="form-control" name="email" id="email" ng-model="email">
+				<input type="text" class="form-control" name="email" id="email" ng-model="email" disabled>
 			</div>
 
 <!-- 			<div class="form-group clearfix">
@@ -26,21 +28,29 @@
 			</div> -->
 
 			<div class="form-group">
-				<label for="pass">Password</label>
-				<input type="password" class="form-control" name="pass" id="pass">
+				<label for="phone">Phone</label>
+				<input type="text" class="form-control" name="phone" id="phone" ng-model="phone" disabled>
 			</div>
+
+			<div class="form-group">
+				<label for="pass">Password</label>
+				<input type="password" class="form-control" name="pass" id="pass" ng-model="pass">
+			</div>
+			
+			<span style="font-weight: bold; color: #FF2400" ng-show="passwordsMatch">Password and Confirm Password must match.</span>
 
 			<div class="form-group">
 				<label for="pass">Confirm Password</label>
-				<input type="password" class="form-control" name="pass" id="pass">
+				<input type="password" class="form-control" name="confpass" id="confpass" ng-model="confpass" compare-to="pass">
 			</div>
 
-			<div class="form-group">
-				<label for="phone">Phone</label>
-				<input type="text" class="form-control" name="phone" id="phone" ng-model="phone">
-			</div>
+<!-- 			<div class="form-errors" ng-messages="profileUpdate_form.confpass.$error" style="font-weight: bold; color: #FF2400" ng-if='profileUpdate_form.confPass.$touched'>
+				<span class="form-error" ng-message="password">Password and Confirm Password must match.</span>
+			</div>	 -->
 
-			<p class="text-center"><button class="btn btn-default btn-primary"><span class="glyphicon glyphicon-ok"> Update</span></button></p>			
+						
+
+			<p class="text-center"><button class="btn btn-default btn-primary" ng-click="changeProfInfo(confpass)"><span class="glyphicon glyphicon-ok"> Update</span></button></p>			
 
 		</form>
 	</div>
