@@ -171,11 +171,11 @@ function encryptPass(password){
 		res.send({});
 	});
 
-	app.get('/app/uploads/:file', function(req, res){
+	app.get('/uploads/:file', function(req, res){
 
 		var fileName = req.params.file;
 		//console.log("request info ", req);
-		console.log("file name ", file);
+		console.log("file name ", fileName);
 		//var file = 'app/uploads/' + fileName;
 		var file = __dirname;
 
