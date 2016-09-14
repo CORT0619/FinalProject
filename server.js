@@ -171,7 +171,7 @@ function encryptPass(password){
 		res.send({});
 	});
 
-	app.get('/app/uploads', function(req, res){
+	app.get('/app/uploads/:file', function(req, res){
 
 		console.log("request info ", req);
 
