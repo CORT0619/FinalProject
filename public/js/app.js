@@ -1,6 +1,10 @@
 var app = angular.module('app', [
 		'ui.router', 'ngStorage'
 	])
+	.run(function($rootScope){
+		$rootScope.coach = false;
+		$rootScope.stud = false;
+	})
 	.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider){
 		$urlRouterProvider.otherwise('/');
 

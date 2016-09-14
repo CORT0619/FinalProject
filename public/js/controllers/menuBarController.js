@@ -1,4 +1,4 @@
-app.controller('menubarCtrl', ['$scope', 'loginService','$http', '$location', '$state', '$window', '$localStorage', function($scope, loginService, $http, $location, $state, $window, $localStorage){
+app.controller('menubarCtrl', ['$rootScope', '$scope', 'loginService','$http', '$location', '$state', '$window', '$localStorage', function($rootScope, $scope, loginService, $http, $location, $state, $window, $localStorage){
 
 	$scope.$state = $state;
 	$scope.$storage = $localStorage;
@@ -6,8 +6,13 @@ app.controller('menubarCtrl', ['$scope', 'loginService','$http', '$location', '$
 	$scope.showLogin = false;
 	$scope.isLoggedIn;
 
-	$scope.coach = false;
-	$scope.stud = false;
+	// $scope.coach = false;
+	// $scope.stud = false;
+
+
+	$scope.loginWrong = false;
+	$scope.login = "";
+	$scope.password = "";
 
 	$scope.toggle = function(){
 		$scope.showLogin = !$scope.showLogin;
@@ -26,13 +31,21 @@ app.controller('menubarCtrl', ['$scope', 'loginService','$http', '$location', '$
 
 				if($scope.role == 'stud'){
 					//show student links
-					$scope.stud = true;
+					
+					$rootScope.stud = true;
+					//$scope.stud = true;
+					
 					//$scope.coach = false;
+					console.log("stud ", $rootScope.stud);
 
 				} else {
 
 					//show coach links
+
+					$rootScope.coach = true;
 					$scope.coach = true;
+
+
 					//$scope.stud = false;
 				}
 
@@ -86,8 +99,10 @@ app.controller('menubarCtrl', ['$scope', 'loginService','$http', '$location', '$
 				}*/
 
 			}).catch(function(){
-				$scope.showModal = true;
-				console.log("login failed");
+				$scope.loginWrong = true;
+				$scope.login = "";
+				$scope.password = "";
+
 				// $window.location.reload();
 			});
 	}
