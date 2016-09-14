@@ -177,7 +177,7 @@ function encryptPass(password){
 		//console.log("request info ", req);
 		console.log("file name ", fileName);
 		//var file = 'app/uploads/' + fileName;
-		var file = __dirname;
+		var file = __dirname + '/uploads/' + fileName;
 
 		console.log("file path ", file);
 
