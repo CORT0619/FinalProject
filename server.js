@@ -176,7 +176,10 @@ function encryptPass(password){
 		var fileName = req.params.file;
 		//console.log("request info ", req);
 		console.log("file name ", file);
-		var file = 'app/uploads' + fileName;;
+		//var file = 'app/uploads/' + fileName;
+		var file = __dirname;
+
+		console.log("file path ", file);
 
 		//res.send({});
 		res.download(file);
