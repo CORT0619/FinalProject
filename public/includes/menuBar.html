@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<!-- <login-modal visible="showModal"></login-modal> -->
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			<button type="button" ng-click="moveDown()" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -39,7 +39,7 @@
 </nav>
 		
 <!-- <div id="loginBox" class="ng-hide animate-show"> -->
-<div id="loginBox" ng-show="showLogin">
+<div id="loginBox" ng-show="showLogin" ng-class="{'moveDown': isActive}">
 	<h3>Member Login</h3>
 	<form>
 		<span style="font-weight: bold; color: #FF2400" ng-show="loginWrong">Incorrect Username or Password.</span>

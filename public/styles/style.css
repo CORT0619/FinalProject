@@ -96,7 +96,7 @@ div.glyphicon {
 
 #loginContainer {
 	/*float: right;*/
-	border: 1px solid #000;
+	border: 1px solid #030386;
 	/*padding: 0px 20px 0px 20px;*/
 	/*overflow: hidden;*/
 	float: right;
@@ -454,6 +454,10 @@ form#dropzone {
 
 	#embedded-sidebar {
 		display: block;
+	}
+
+	.moveDown {
+		margin-top: 180px;
 	}
 }
 

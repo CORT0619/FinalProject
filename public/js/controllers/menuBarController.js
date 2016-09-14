@@ -13,9 +13,14 @@ app.controller('menubarCtrl', ['$rootScope', '$scope', 'loginService','$http', '
 	$scope.loginWrong = false;
 	$scope.login = "";
 	$scope.password = "";
+	$scope.isActive = false;
 
 	$scope.toggle = function(){
 		$scope.showLogin = !$scope.showLogin;
+	}
+
+	$scope.moveDown = function(){
+		$scope.isActive = !$scope.isActive;
 	}
 
 
@@ -99,7 +104,7 @@ app.controller('menubarCtrl', ['$rootScope', '$scope', 'loginService','$http', '
 				}*/
 
 			}).catch(function(){
-				$scope.loginWrong = true;
+				$scope.loginWroncleg = true;
 				$scope.login = "";
 				$scope.password = "";
 
