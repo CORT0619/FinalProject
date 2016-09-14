@@ -173,13 +173,13 @@ function encryptPass(password){
 
 	app.get('/app/uploads/:file', function(req, res){
 
-		var file = req.params.file;
+		var fileName = req.params.file;
 		//console.log("request info ", req);
 		console.log("file name ", file);
+		var file = 'app/uploads' + fileName;;
 
-
-		res.send(req);
-		//res.download(file);
+		//res.send({});
+		res.download(file);
 
 	});
 
