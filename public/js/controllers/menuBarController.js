@@ -27,6 +27,7 @@ app.controller('menubarCtrl', ['$rootScope', '$scope', 'loginService','$http', '
 	$scope.logMeIn = function(username, password){
 		$scope.isLoggedIn = false;
 
+		
 		loginService.func1(username, password)
 			.then(function(res){
 
@@ -104,7 +105,7 @@ app.controller('menubarCtrl', ['$rootScope', '$scope', 'loginService','$http', '
 				}*/
 
 			}).catch(function(){
-				$scope.loginWroncleg = true;
+				$scope.loginWrong = true;
 				$scope.login = "";
 				$scope.password = "";
 
