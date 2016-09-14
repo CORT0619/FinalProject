@@ -12,8 +12,8 @@ var fs = require('fs');
 var formidable = require('formidable');
 
 // make connection to mongodb
-var uri = process.env.MONGODB_URI;
-	//var uri = 'mongodb://localhost/StarLink';
+//var uri = process.env.MONGODB_URI;
+	var uri = 'mongodb://localhost/StarLink';
 mongoose.connect(uri);
 
 var db = mongoose.connection;
@@ -169,6 +169,17 @@ function encryptPass(password){
 		});
 
 		res.send({});
+	});
+
+	app.get('/app/uploads', function(req, res){
+
+		console.log("request info ", req);
+
+		
+
+		res.send(req);
+		//res.download(file);
+
 	});
 
 
