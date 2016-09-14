@@ -173,8 +173,9 @@ function encryptPass(password){
 
 	app.get('/app/uploads/:file', function(req, res){
 
-		console.log("request info ", req);
-
+		var file = req.params.file;
+		//console.log("request info ", req);
+		console.log("file name ", file);
 
 
 		res.send(req);
