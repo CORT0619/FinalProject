@@ -12,8 +12,8 @@ var fs = require('fs');
 var formidable = require('formidable');
 
 // make connection to mongodb
-var uri = process.env.MONGODB_URI;
-	//var uri = 'mongodb://localhost/StarLink';
+//var uri = process.env.MONGODB_URI;
+	var uri = 'mongodb://localhost/StarLink';
 mongoose.connect(uri);
 
 var db = mongoose.connection;
@@ -122,7 +122,8 @@ var auth = function(req, res/*, next*/){
 		//next();
 
 		console.log("req.user ", req.user);
-		res.send(200, req.user);
+		// res.send(200, req.user);
+		res.status(200).send(req.user);
 	}
 }
 

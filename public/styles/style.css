@@ -197,6 +197,14 @@ menu-bar {
 	border-bottom-right-radius: 2px;
 }
 
+/*  Home.html */
+
+img#collage {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+
 /* Login div */
 #loginBox {
 	border: 1px solid #E6E6E6;
@@ -383,7 +391,7 @@ h2 {
 .main {
 	background-color: #FCFCFD;
 /*	padding: unset;*/
-	padding: 20px;
+	/*padding: 20px;*/
 	height: 100%
 }
 
@@ -459,6 +467,14 @@ form#dropzone {
 	.moveDown {
 		margin-top: 180px;
 	}
+
+	.col-sm-12 {
+		padding-right: unset;
+	}
+
+	.menuHolder {
+		margin-bottom: 51px;
+	}
 }
 
 @media (min-width: 768px){
@@ -485,8 +501,8 @@ form#dropzone {
 	}
 
 	.main {
-		padding-right: 40px;
-		padding-left: 40px;
+		/*padding-right: 40px;
+		padding-left: 40px;*/
 	}
 }
 
