@@ -12,8 +12,8 @@ var fs = require('fs');
 var formidable = require('formidable');
 
 // make connection to mongodb
-//var uri = process.env.MONGODB_URI;
-	var uri = 'mongodb://localhost/StarLink';
+var uri = process.env.MONGODB_URI;
+	//var uri = 'mongodb://localhost/StarLink';
 mongoose.connect(uri);
 
 var db = mongoose.connection;
