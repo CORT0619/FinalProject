@@ -8,6 +8,7 @@ var crypto = require('crypto');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var fs = require('fs');
+var path = require('path');
 
 var formidable = require('formidable');
 
@@ -103,6 +104,7 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(cookieParser());
 
 app.use(express.static(process.cwd() + '/public'));
+app.use(express.static(process.cwd() + '/uploads'));
 app.use(session({secret: 'cookies pretty',
 				 saveUninitialized: false,
 				 resave: false,
@@ -178,7 +180,7 @@ function encryptPass(password){
 		//console.log("request info ", req);
 		console.log("file name ", fileName);
 		//var file = 'app/uploads/' + fileName;
-		var file = __dirname + '/uploads/' + fileName;
+		var file = path.join(__dirname, 'uploads',fileName);
 
 		console.log("file path ", file);
 

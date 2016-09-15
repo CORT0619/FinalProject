@@ -18,7 +18,7 @@
 			<td class="text-left">{{student.email}}</td>
 			<td class="text-left">{{student.school}}</td>
 			<td class="text-left">{{student.phone}}</td>
-			<td class="text-left"><p ng-repeat="upload in student.uploads"><a href="{{upload.path}}" class="uploadLinks">{{upload.name}}</a></p></td>
+			<td class="text-left"><p ng-repeat="upload in student.uploads"><a href="/{{upload.name}}" class="uploadLinks">{{upload.name}}</a></p></td>
 		</tr>
 	</table>
 </div>
