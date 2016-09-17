@@ -66,6 +66,10 @@ div.glyphicon {
 	bottom: 0;
 }
 
+.col-md-12, .col-sm-12 {
+	padding-right: unset;
+}
+
 /* nav bar */
 
 #embedded-sidebar {

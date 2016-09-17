@@ -1,0 +1,17 @@
+website to-do
+-------------
+- make flash messages work
+- store document id in user object
+- make sure embedded links in sidebar show on click
+- give confirmation message when file is successfully uploaded
+- must reload page after login error
+- username doesn't append to url
+
+
+things to do
+------------
+clear out localstorage on logout??
+
+
+- error message for login
+- sidebar for coaches/students
